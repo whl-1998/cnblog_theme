@@ -1,7 +1,7 @@
 (function ($) {
 	$.extend({
 		silence: (options) => {
-			var silence = new Silence();
+			let silence = new Silence();
 			silence.init(options);
 		}
 	});
@@ -155,15 +155,15 @@
 			});
 			//<!--离开页面改变title-->
 			var time;
-			var normar_title = document.title;
+			var normal_title = document.title;
 			document.addEventListener('visibilitychange', function () {
-				if (document.visibilityState == 'hidden') {
+				if (document.visibilityState === 'hidden') {
 					clearTimeout(time);
 					document.title = '(＃°Д°)';
 				} else {
 					document.title = '(。・∀・)ノ';
 					time = setTimeout(function () {
-						document.title = normar_title;
+						document.title = normal_title;
 					}, 3000);
 
 				}
@@ -273,8 +273,18 @@
 			});
 
 
-			$("#navList").append('<li><a id="blog_nav_myyoulian" class="menu" href="https://www.cnblogs.com/zouwangblog/articles/11177049.html">友链</a><i></i></li><li><a id="blog_nav_myzanshang" class="menu" href="https://www.cnblogs.com/zouwangblog/articles/11340077.html">赞赏</a><i></i></li><li><a id="blog_nav_myguanyu" class="menu" href="">关于</a><i></i></li>');
-			//添加标签icon
+			// $("#navList").append(
+			// 	'<li>' +
+			// 	'<a id="blog_nav_myyoulian" class="menu" href="https://www.cnblogs.com/zouwangblog/articles/11177049.html">友链</a>' +
+			// 	'<i></i>' +
+			// 	'</li><li>' +
+			// 	'<a id="blog_nav_myzanshang" class="menu" href="https://www.cnblogs.com/zouwangblog/articles/11340077.html">赞赏</a>' +
+			// 	'<i></i></li><li>' +
+			// 	'<a id="blog_nav_myguanyu" class="menu" href="">关于</a>' +
+			// 	'<i></i>' +
+			// 	'</li>');
+
+			// 添加标签icon
 			$('#blog_nav_myhome').prepend('<i class="fa fa-fort-awesome" aria-hidden="true"></i>');
 			$('#blog_nav_contact').prepend('<i class="fa fa-address-book-o" aria-hidden="true"></i>');
 			$('#blog_nav_rss').prepend('<i class="fa fa-rss faa-pulse" aria-hidden="true"></i>');
@@ -283,14 +293,13 @@
 			$('#blog_nav_myzanshang').prepend('<i class="fa fa-heart" aria-hidden="true"></i>');
 			$('#blog_nav_myguanyu').prepend('<i class="fa fa-leaf" aria-hidden="true"></i>');
 
-			//添加li内嵌ui
-			//todo
-			let guanyu = '<ul class="sub-menu">' +
-					'<li><a href="https://www.cnblogs.com/zouwangblog/articles/11157339.html "><i class="fa fa-meetup" aria-hidden="true"></i> 我？</a></li>' +
-					'<li><a href="https://www.cnblogs.com/zouwangblog/articles/11346906.html "><i class="fa fa-area-chart" aria-hidden="true"></i> 统计</a></li>' +
-					'<li><a href="https://www.cnblogs.com/zouwangblog/articles/11350777.html "><i class="fa fa-heartbeat" aria-hidden="true"></i> 监控</a></li>' +
-					'<li><a href="https://www.cnblogs.com/zouwangblog/p/11541835.html "><i class="iconfont icon-taohua" aria-hidden="true"></i> 主题</a></li>' +
-					'</ul>';
+			// 添加li内嵌ui
+			// let guanyu = '<ul class="sub-menu">' +
+			// 		'<li><a href="https://www.cnblogs.com/zouwangblog/articles/11157339.html "><i class="fa fa-meetup" aria-hidden="true"></i> 我？</a></li>' +
+			// 		'<li><a href="https://www.cnblogs.com/zouwangblog/articles/11346906.html "><i class="fa fa-area-chart" aria-hidden="true"></i> 统计</a></li>' +
+			// 		'<li><a href="https://www.cnblogs.com/zouwangblog/articles/11350777.html "><i class="fa fa-heartbeat" aria-hidden="true"></i> 监控</a></li>' +
+			// 		'<li><a href="https://www.cnblogs.com/zouwangblog/p/11541835.html "><i class="iconfont icon-taohua" aria-hidden="true"></i> 主题</a></li>' +
+			// 		'</ul>';
 			$('#blog_nav_myguanyu').after(guanyu);
 
 		}
@@ -353,7 +362,7 @@
 						clearInterval(intervalId);
 						builder();
 					}
-					if (count == 10) {
+					if (count === 10) {
 						// no feedback.
 						clearInterval(intervalId);
 					}
@@ -621,11 +630,9 @@
 		 */
 		buildPostCodeCopyBtns() {
 			let $pres = $('.postBody .cnblogs-markdown').find('pre');
-
 			if (!$pres.length) {
 				return false;
 			}
-
 			$.each($pres, (index, pre) => {
 				$(pre).find('code').attr('id', `copy_target_${index}`);
 				$(pre).prepend(`<div class="esa-clipboard-button" data-clipboard-target="#copy_target_${index}" title="复制代码">Copy</div>`);
@@ -709,7 +716,7 @@
 							type: "post",
 							contentType: "application/json; charset=utf-8",
 							success: (msg) => {
-								msg == "未登录" ? login() : (msg == "关注成功" && followByGroup(n, !0));
+								msg === "未登录" ? login() : (msg === "关注成功" && followByGroup(n, !0));
 								this.showMessage(msg);
 							}
 						})
@@ -802,7 +809,7 @@
 		// 窗体高度
 		getWindowHeight() {
 			var windowHeight = 0;
-			if (document.compatMode == "CSS1Compat") {
+			if (document.compatMode === "CSS1Compat") {
 				windowHeight = document.documentElement.clientHeight;
 			} else {
 				windowHeight = document.body.clientHeight;
@@ -823,18 +830,20 @@
 					`<div class="main-header">` +
 					`</div>` +
 					`<div class="focusinfo no-select">` +
-					`       <h1 class="center-text glitch is-glitching Ubuntu-font" data-text="Hi, Toretto!">${config.title}</h1>` +
+					`       <h1 class="center-text glitch is-glitching Ubuntu-font" data-text="Hi, emo!">${config.title}</h1>` +
 					`       <div class="header-info"><p><i class="fa fa-quote-left"></i> ${config.text} <i class="fa fa-quote-right"></i></p>` +
 					`           <div class="top-social_v2">` +
 					`              <li id="bg-pre"><img class="flipx" src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808103709869-648245711.png"></li>` +
 					`              <li><a href="${config.github}" target="_blank" class="social-github" title="github"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095618459-218538626.png"></a></li>` +
 					`              <li><a href="${config.weibo}" target="_blank" class="social-sina" title="sina"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095623418-1617766229.png"></a></li>` +
-					`              <li><a href="${config.telegram}" target="_blank" class="social-lofter" title="telegram"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095628401-835828752.png"></a></li>` +
+					// `              <li><a href="${config.telegram}" target="_blank" class="social-lofter" title="telegram"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095628401-835828752.png"></a></li>` +
 					`              <li><a href="${config.music}" target="_blank" class="social-wangyiyun" title="CloudMusic"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095640330-1209750721.png"></a></li>` +
-					`              <li><a href="${config.twitter}" target="_blank" class="social-wangyiyun" title="Twitter"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095635213-701885869.png"></a></li>` +
+					// `              <li><a href="${config.twitter}" target="_blank" class="social-wangyiyun" title="Twitter"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095635213-701885869.png"></a></li>` +
 					`              <li><a href="${config.zhihu}" target="_blank" class="social-wangyiyun" title="Zhihu"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095650119-1882504549.png"></a></li>` +
 					`              <li><a href="${config.mail}" target="_blank" class="social-wangyiyun" title="E-mail"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095613956-1350546638.png"></a></li>` +
-					`              <li id="bg-next"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808103709869-648245711.png"></li>` +
+					`              <li id="bg-next">
+										<img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808103709869-648245711.png">
+								   </li>` +
 					`           </div>` +
 					`      </div>` +
 					`</div>` +
@@ -919,10 +928,9 @@
 				let edit =  $(descs[j]).find('a')[0].href;
 				let url = $(infos[j]).find('img')[0];
 				let content = contents[j].textContent.replace('阅读全文','');
-				if(url!=undefined)
-				{
+				if (url !== undefined) {
 					url = url.src;
-				}else{
+				} else {
 					url = url = 'https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg';
 				}
 				let html = `<div class="post post-list-thumb post-list-show">` +
@@ -977,7 +985,7 @@
 				$('.pattern-center').addClass('single-center')
 				$('.pattern-header').addClass('single-header')
 			} else {
-				return
+
 			}
 
 		}
